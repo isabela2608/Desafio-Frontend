@@ -1,0 +1,26 @@
+.geral h1{
+    margin-top: 40px;
+    text-align: center;
+}
+
+.products_grid{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+  margin-top: 20px;
+  padding: 60px;
+}
+
+
+
+@media (max-width: 1024px){
+  .products_grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px){
+  .products_grid{
+    grid-template-columns: 1fr;
+  }
+}
