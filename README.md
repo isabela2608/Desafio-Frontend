@@ -5,7 +5,7 @@ Projeto desenvolvido com React e Vite para consumir dados da Fake Store API e ex
 ## Sprint 1 — Estrutura Base e Listagem
 
 ### Objetivo
-Configurar o projeto e listar os dados da API.
+Configuraração do projeto e listar os dados da API.
 
 ### Funcionalidades implementadas
 - Projeto iniciado com Vite.
