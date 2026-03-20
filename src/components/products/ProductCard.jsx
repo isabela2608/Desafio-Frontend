@@ -1,9 +1,12 @@
+//Fazer o card ser clicavel 
+import { Link } from "react-router-dom"
+
 import styles from "./ProductCard.module.css"
 
-function ProductCard({ image, title, price }) {
+function ProductCard({ id, image, title, price }) {
   return (
 
-    <div className={styles.card}>
+    <Link to={`/products/${id}`} className={styles.card}>
 
       <img src={image} alt={title} />
 
@@ -11,7 +14,7 @@ function ProductCard({ image, title, price }) {
 
       <p>R$ {price}</p>
 
-    </div>
+    </Link>
 
   )
 }
