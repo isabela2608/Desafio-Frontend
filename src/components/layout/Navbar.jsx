@@ -17,6 +17,15 @@ function Navbar() {
           <li className={styles.item}>
             <Link to="/products">Produtos</Link>
           </li>
+
+          <li className={styles.item}>
+            <Link to="/cart">Carrinho</Link>
+          </li>
+
+          <li className={styles.item}>
+            <Link to="/login">Login</Link>
+          </li>
+          
         </ul>
 
       </Container>
