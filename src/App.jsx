@@ -6,9 +6,11 @@ import Products from './pages/Products'
 import ProductDetails from './pages/ProductDetails'
 import Cart from './pages/Cart'
 import Login from './pages/Login'
+import { CartProvider } from "./context/CartContext"
 
 function App() {
   return (
+      <CartProvider>
     <Router>
 
       <Navbar />
@@ -22,6 +24,7 @@ function App() {
       </Routes>
 
     </Router>
+      </CartProvider>
   );
 }
 

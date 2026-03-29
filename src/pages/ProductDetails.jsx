@@ -1,12 +1,16 @@
 import styles from "./ProductDetails.module.css"
 import { useParams, Link } from "react-router-dom"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useContext } from "react"
 import loading from "./../assets/loading.svg"
+
+import { CartContext } from "../context/CartContext"
 
 function ProductDetails() {
   const { id } = useParams()
   const [product, setProduct] = useState(null)
   const [quantity, setQuantity] = useState(1)
+
+  const { cart, setCart } = useContext(CartContext)
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -26,6 +30,34 @@ function ProductDetails() {
     if (quantity > 1) {
       setQuantity(quantity - 1)
     }
+  }
+
+  const handleAddToCart = () => {
+
+    const productExists = cart.find(item => item.id === product.id)
+
+    if (productExists) {
+      const updatedCart = cart.map(item =>
+        item.id === product.id
+          ? { ...item, quantity: item.quantity + quantity }
+          : item
+      )
+
+      setCart(updatedCart)
+
+    } else {
+      const newProduct = {
+        ...product,
+        quantity: quantity
+      }
+
+      const newCart = [...cart, newProduct]
+
+      setCart(newCart)
+
+    }
+
+    setQuantity(1)
   }
 
   if (!product) {
@@ -64,7 +96,6 @@ function ProductDetails() {
           {product.description}
         </p>
 
-        {/* 🔥 LINHA COM CONTADOR + BOTÃO */}
         <div className={styles.actions}>
 
           <div className={styles.counter}>
@@ -73,7 +104,7 @@ function ProductDetails() {
             <button onClick={increase}>+</button>
           </div>
 
-          <button className={styles.btnCart}>
+          <button className={styles.btnCart} onClick={handleAddToCart}>
             <span>Adicionar</span>
             <span className={styles.bntprice}>
               R$ {totalPrice.toFixed(2)}
