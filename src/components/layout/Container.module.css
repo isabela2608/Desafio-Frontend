@@ -1,10 +1,8 @@
 .container {
-    max-width: 1200px;
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    gap: 80px;
-    margin: 0 auto;
+  display: flex;
+  justify-content: space-between; /*Separa os itens em esquerda e direita*/
+  align-items: center;
+  width: 100%;
 }
 
 .min-height {

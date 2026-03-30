@@ -10,6 +10,9 @@ function ProductDetails() {
   const [product, setProduct] = useState(null)
   const [quantity, setQuantity] = useState(1)
 
+  const [showMessage, setShowMessage] = useState(false)
+  const [loadingAdd, setLoadingAdd] = useState(false)
+
   const { cart, setCart } = useContext(CartContext)
 
   useEffect(() => {
@@ -34,30 +37,42 @@ function ProductDetails() {
 
   const handleAddToCart = () => {
 
-    const productExists = cart.find(item => item.id === product.id)
+    setLoadingAdd(true) 
 
-    if (productExists) {
-      const updatedCart = cart.map(item =>
-        item.id === product.id
-          ? { ...item, quantity: item.quantity + quantity }
-          : item
-      )
+    setTimeout(() => {
 
-      setCart(updatedCart)
+      const productExists = cart.find(item => item.id === product.id)
 
-    } else {
-      const newProduct = {
-        ...product,
-        quantity: quantity
+      if (productExists) {
+        const updatedCart = cart.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        )
+
+        setCart(updatedCart)
+
+      } else {
+        const newProduct = {
+          ...product,
+          quantity: quantity
+        }
+
+        const newCart = [...cart, newProduct]
+
+        setCart(newCart)
       }
 
-      const newCart = [...cart, newProduct]
+      setQuantity(1)
 
-      setCart(newCart)
+      setShowMessage(true)
+      setTimeout(() => {
+        setShowMessage(false)
+      }, 2000)
 
-    }
+      setLoadingAdd(false)
 
-    setQuantity(1)
+    }, 1000)
   }
 
   if (!product) {
@@ -72,6 +87,14 @@ function ProductDetails() {
 
   return (
     <section className={styles.container}>
+
+      {loadingAdd && (
+        <div className={styles.overlay}>
+          <div className={styles.spinner}></div>
+          <p>Adicionando...</p>
+        </div>
+      )}
+
 
       <div className={styles.image_container}>
         <Link to="/products" className={styles.back_button}>
