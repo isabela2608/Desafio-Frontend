@@ -23,6 +23,7 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 * JavaScript
 * CSS Modules
 * Fetch API
+* Context API
 
 ---
 
@@ -63,20 +64,59 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 
 ---
 
+### ✅ Sprint 3 — Carrinho e Estado Global
+
+* Implementação de estado global utilizando Context API
+* Criação do carrinho de compras acessível em toda a aplicação
+
+* Funcionalidades do carrinho:
+
+  * Adicionar produtos ao carrinho
+  * Incrementar quantidade de produtos já existentes
+  * Remover produtos do carrinho
+  * Limpar carrinho completamente
+  * Atualização dinâmica da quantidade de itens
+
+* Cálculo automático do valor total da compra
+
+* Exibição de:
+
+  * Preço unitário
+  * Quantidade de itens
+  * Valor total por produto
+  * Valor total geral do carrinho
+
+* Interface do carrinho com:
+
+  * Layout responsivo (desktop e mobile)
+  * Organização dos produtos em lista
+  * Imagens dos produtos
+  * Contador de quantidade com botões de incremento/decremento
+
+* Melhorias de experiência do usuário (UX):
+
+  * Feedback visual ao adicionar produtos (mensagem/toast)
+  * Loading durante ações
+  * Indicador de quantidade de itens no carrinho na Navbar
+  * Animação no contador do carrinho
+
+---
+
 ## 📱 Interface e UX
 
 * Layout responsivo (desktop e mobile)
 * Grid de produtos adaptável
 * Efeitos visuais com hover e seleção
-* Destaque visual de categorias
+* Feedback visual nas ações do usuário
+* Indicadores dinâmicos de estado (loading, quantidade de itens)
 
 ---
 
 ## 🔌 API Utilizada
 
-* GET /products
-* GET /products/:id
-* GET /products/categories
+* GET /products  
+* GET /products/:id  
+* GET /products/categories  
 
 📖 Documentação: https://fakestoreapi.com
 
@@ -87,19 +127,3 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 ```bash
 npm install
 npm run dev
-```
-
----
-
-## 📌 Próximas Sprints
-
-* 🛒 Sprint 3: Carrinho de compras (CRUD local)
-* 🔐 Sprint 4: Login de usuário
-
----
-
-## 📊 Status do Projeto
-
-✔ Sprint 1 concluída
-✔ Sprint 2 concluída
-⏳ Sprint 3 em andamento
