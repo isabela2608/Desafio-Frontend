@@ -13,7 +13,7 @@ function ProductDetails() {
   const [showMessage, setShowMessage] = useState(false)
   const [loadingAdd, setLoadingAdd] = useState(false)
 
-  const { cart, setCart } = useContext(CartContext)
+  const { addToCart } = useContext(CartContext)
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -25,50 +25,26 @@ function ProductDetails() {
     fetchProduct()
   }, [id])
 
-  const increase = () => {
-    setQuantity(quantity + 1)
-  }
+  const increase = () => setQuantity(quantity + 1)
 
   const decrease = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1)
-    }
+    if (quantity > 1) setQuantity(quantity - 1)
   }
 
   const handleAddToCart = () => {
-
-    setLoadingAdd(true) 
+    setLoadingAdd(true)
 
     setTimeout(() => {
 
-      const productExists = cart.find(item => item.id === product.id)
-
-      if (productExists) {
-        const updatedCart = cart.map(item =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        )
-
-        setCart(updatedCart)
-
-      } else {
-        const newProduct = {
-          ...product,
-          quantity: quantity
-        }
-
-        const newCart = [...cart, newProduct]
-
-        setCart(newCart)
-      }
+      addToCart({
+        ...product,
+        quantity: quantity
+      })
 
       setQuantity(1)
 
       setShowMessage(true)
-      setTimeout(() => {
-        setShowMessage(false)
-      }, 2000)
+      setTimeout(() => setShowMessage(false), 2000)
 
       setLoadingAdd(false)
 
@@ -94,7 +70,6 @@ function ProductDetails() {
           <p>Adicionando...</p>
         </div>
       )}
-
 
       <div className={styles.image_container}>
         <Link to="/products" className={styles.back_button}>
