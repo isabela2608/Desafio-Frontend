@@ -1,47 +1,75 @@
-import { createContext, useState } from "react"
-
+import { createContext, useState, useEffect } from "react"
 export const CartContext = createContext()
+export function CartProvider({ children }) {
 
-export const CartProvider = ({ children }) => {
+  //Carregar do localStorage
+  const [cart, setCart] = useState(() => {
+    const storedCart = localStorage.getItem("cart")
+    return storedCart ? JSON.parse(storedCart) : []
+  })
 
-  const [cart, setCart] = useState([])
+  //Salvar sempre que mudar algo
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart))
+  }, [cart])
 
-  //Remover item
+  //Adicionar item
+  const addToCart = (product) => {
+    setCart(prev => {
+      const exists = prev.find(item => item.id === product.id)
+
+      if (exists) {
+        return prev.map(item =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + product.quantity }
+            : item
+        )
+      }
+
+      return [...prev, product]
+    })
+  }
+
+  //Remover
   const removeFromCart = (id) => {
-    const updatedCart = cart.filter(item => item.id !== id)
-    setCart(updatedCart)
+    setCart(prev => prev.filter(item => item.id !== id))
   }
 
-  //Aumentar quantidade
+  //Aumentar
   const increaseQuantity = (id) => {
-    const updatedCart = cart.map(item =>
-      item.id === id
-        ? { ...item, quantity: item.quantity + 1 }
-        : item
+    setCart(prev =>
+      prev.map(item =>
+        item.id === id
+          ? { ...item, quantity: item.quantity + 1 }
+          : item
+      )
     )
-    setCart(updatedCart)
   }
 
-  //Diminuir quantidade
+  //Diminuir
   const decreaseQuantity = (id) => {
-    const updatedCart = cart.map(item =>
-      item.id === id && item.quantity > 1
-        ? { ...item, quantity: item.quantity - 1 }
-        : item
+    setCart(prev =>
+      prev
+        .map(item =>
+          item.id === id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+        .filter(item => item.quantity > 0)
     )
-    setCart(updatedCart)
   }
 
-  //Limpar o carrinho
+  //Limpar
   const clearCart = () => {
     setCart([])
+    localStorage.removeItem("cart")
   }
 
   return (
-    <CartContext.Provider 
-      value={{ 
-        cart, 
-        setCart, 
+    <CartContext.Provider
+      value={{
+        cart,
+        addToCart,
         removeFromCart,
         increaseQuantity,
         decreaseQuantity,
