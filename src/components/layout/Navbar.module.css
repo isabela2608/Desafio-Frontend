@@ -1,94 +1,141 @@
 .navbar {
   background-color: black;
-  padding: 1em;
+  padding: 15px 0;
   position: sticky;
   top: 0;
   z-index: 10;
 }
 
-
-.list {
+/* Estrutura */
+.nav_content {
   display: flex;
-  list-style: none;
   align-items: center;
-  gap: 20px;
-  margin-left: auto; 
-  margin-right: 100px;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 0 100px;
+
+  box-sizing: border-box;
 }
 
+/*Logo */
+.logo {
+  width: 140px;
+}
+
+/*Direita */
+.right_side {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+/* Busca */
+.search_box {
+  position: relative;
+  width: 350px;
+}
+
+.search_icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: black;
+  font-size: 14px;
+}
+
+.search_input {
+  width: 100%;
+  padding: 10px 15px 10px 40px;
+
+  border-radius: 999px;
+  border: 1px solid #ccc;
+  outline: none;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/*Menu */
+.list {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/*Links */
 .item a {
-  color: #FFF;
+  color: white;
   text-decoration: none;
-  transition: 0.2s;
+  font-weight: 500;
 }
 
 .item a:hover {
   color: palevioletred;
-  transform: translateY(-2px);
 }
 
-.logo {
-  width: 160px;
-  margin-left: 100px;
-}
-
+/*Carrinho */
 .cartContainer {
   position: relative;
-  display: flex;
-  align-items: center;
 }
 
 .cartIcon {
   font-size: 22px;
 }
 
-/*Quantidade de itens no carrinho*/
+/*Badge */
 .badge {
   position: absolute;
   top: -8px;
   right: -10px;
-
   background-color: #01a13c;
   color: white;
-
   font-size: 12px;
-  font-weight: bold;
-
   width: 18px;
   height: 18px;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
   border-radius: 50%;
-
-  animation: pop 0.3s ease;
 }
 
-/*Efeito quando o item é adicionado*/
-@keyframes pop {
-  0% {
-    transform: scale(1);
+/*RESPONSIVO */
+@media (max-width: 1024px) {
+
+  .nav_content {
+    padding: 0 40px;
   }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
+
+  .search_box {
+    width: 200px;
   }
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
-  .logo{
-    width: 50%;
-    margin-left: 10px;
+
+  .nav_content {
+    padding: 0 20px;
   }
 
-  .list{
-    font-size: 80%;
-    padding: auto;
-    margin-right: 10%;
+  .right_side {
+    gap: 20px;
+  }
+
+  .search_box {
+    display: none; /* esconde a  busca no mobile */
+  }
+
+  .logo {
+    width: 110px;
+  }
+
+  .list {
+    gap: 20px;
   }
 }
