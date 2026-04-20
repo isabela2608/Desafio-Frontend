@@ -13,6 +13,8 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 * Roteamento com React Router
 * Componentização
 * Estilização responsiva
+* Persistência de dados no navegador (localStorage)
+* Filtros dinâmicos e busca em tempo real
 
 ---
 
@@ -24,6 +26,7 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 * CSS Modules
 * Fetch API
 * Context API
+* LocalStorage
 
 ---
 
@@ -36,7 +39,6 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 * Criação de Header com navegação
 * Listagem de produtos em grid responsivo
 * Componente de Card de Produto exibindo:
-
   * Imagem
   * Título
   * Preço em reais (R$)
@@ -47,7 +49,6 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 
 * Página de detalhes do produto
 * Exibição de:
-
   * Imagem
   * Título
   * Preço
@@ -57,7 +58,6 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 * Botão de voltar para a listagem de produtos
 * Filtro de produtos por categoria
 * Categorias exibidas com:
-
   * Imagens em formato circular
   * Destaque visual da categoria selecionada
 * Atualização dinâmica dos produtos conforme a categoria selecionada
@@ -70,7 +70,6 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 * Criação do carrinho de compras acessível em toda a aplicação
 
 * Funcionalidades do carrinho:
-
   * Adicionar produtos ao carrinho
   * Incrementar quantidade de produtos já existentes
   * Remover produtos do carrinho
@@ -80,25 +79,46 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 * Cálculo automático do valor total da compra
 
 * Exibição de:
-
   * Preço unitário
   * Quantidade de itens
   * Valor total por produto
   * Valor total geral do carrinho
 
 * Interface do carrinho com:
-
   * Layout responsivo (desktop e mobile)
-  * Organização dos produtos em lista
+  * Lista organizada de produtos
   * Imagens dos produtos
-  * Contador de quantidade com botões de incremento/decremento
+  * Controle de quantidade com botões
 
-* Melhorias de experiência do usuário (UX):
+* Melhorias de UX:
+  * Feedback visual ao adicionar produtos
+  * Loading em ações assíncronas
+  * Indicador de quantidade no carrinho na Navbar
+  * Animações no contador do carrinho
 
-  * Feedback visual ao adicionar produtos (mensagem/toast)
-  * Loading durante ações
-  * Indicador de quantidade de itens no carrinho na Navbar
-  * Animação no contador do carrinho
+---
+
+### ✅ Sprint 4 — Organização, UX e Entrega Final
+
+* Organização da arquitetura do projeto em pastas:
+  * assets/
+  * components/layout/products
+  * context/
+  * pages/
+
+* Persistência de dados:
+  * Carrinho salvo no localStorage
+  * Dados mantidos mesmo após recarregar a página
+
+* Busca dinâmica de produtos:
+  * Busca por nome e categoria
+  * Sincronização entre Navbar e busca mobile
+  * Reset automático de filtros ao mudar categoria ou busca
+
+* Melhorias de UX:
+  * Interface responsiva e mais fluida
+  * Filtros e busca mais intuitivos
+  * Feedback visual aprimorado
 
 ---
 
@@ -106,9 +126,9 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 
 * Layout responsivo (desktop e mobile)
 * Grid de produtos adaptável
-* Efeitos visuais com hover e seleção
+* Filtros e busca em tempo real
 * Feedback visual nas ações do usuário
-* Indicadores dinâmicos de estado (loading, quantidade de itens)
+* Indicadores dinâmicos de estado (loading, carrinho, filtros)
 
 ---
 
@@ -118,7 +138,7 @@ O DevShop é um catálogo de produtos que demonstra habilidades em:
 * GET /products/:id  
 * GET /products/categories  
 
-📖 Documentação: https://fakestoreapi.com
+📖 https://fakestoreapi.com
 
 ---
 
